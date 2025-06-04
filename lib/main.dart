@@ -49,39 +49,22 @@ class _MyHomePageState extends State<MyHomePage> {
 
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Container(
-          color: Colors.black87,
-          height: 200.0,
-          child: Row(
-            // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Container(
-                height: 100.0,
-                width: 100.0,
-                decoration: BoxDecoration(
-                  color: Colors.pink,
-                  borderRadius: BorderRadius.circular(25.0),
+      body: Container(
+        padding: EdgeInsets.all(25.0),
+        height: 300,
+        child: Stack(
+          children: [
+            Image.asset('assets/images/bg.jpg', fit: BoxFit.cover),
+            SizedBox(
+              child: Center(
+                child: Text(
+                  "My sweety cold life",
+                  style: TextStyle(color: Colors.black87),
                 ),
               ),
-              Container(
-                height: 100.0,
-                width: 100.0,
-                decoration: BoxDecoration(
-                  color: Colors.amber,
-                  borderRadius: BorderRadius.circular(25.0),
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
       ),
     );
   }
