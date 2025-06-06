@@ -4,28 +4,38 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.tealAccent,
+          seedColor: Colors.teal,
           brightness: Brightness.dark,
         ),
       ),
       home: Scaffold(
-        appBar: AppBar(title: Text("Harlequelrah App"), centerTitle: true),
+        appBar: AppBar(title: Text("My Flutter App"), centerTitle: true),
         bottomNavigationBar: NavigationBar(
           destinations: [
             NavigationDestination(icon: Icon(Icons.home), label: "home"),
             NavigationDestination(icon: Icon(Icons.person), label: "profile"),
           ],
-          selectedIndex: 0,
-          onDestinationSelected: (value) {},
+          selectedIndex: selectedIndex,
+          onDestinationSelected: (int index) {
+            setState(() {
+              selectedIndex = index;
+            });
+          },
         ),
       ),
     );
