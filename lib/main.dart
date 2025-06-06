@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tuto_project/views/widget_tree.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,7 +13,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -23,21 +23,7 @@ class _MyAppState extends State<MyApp> {
           brightness: Brightness.dark,
         ),
       ),
-      home: Scaffold(
-        appBar: AppBar(title: Text("My Flutter App"), centerTitle: true),
-        bottomNavigationBar: NavigationBar(
-          destinations: [
-            NavigationDestination(icon: Icon(Icons.home), label: "home"),
-            NavigationDestination(icon: Icon(Icons.person), label: "profile"),
-          ],
-          selectedIndex: selectedIndex,
-          onDestinationSelected: (int index) {
-            setState(() {
-              selectedIndex = index;
-            });
-          },
-        ),
-      ),
+      home: WidgetTree(),
     );
   }
 }
