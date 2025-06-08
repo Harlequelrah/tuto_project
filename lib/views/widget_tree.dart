@@ -13,7 +13,25 @@ class WidgetTree extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("My Flutter App"), centerTitle: true),
+      appBar: AppBar(
+        title: Text("My Flutter App"),
+        centerTitle: true,
+        actions: [
+          ValueListenableBuilder(
+            valueListenable: isDarkModeNotifier,
+            builder: (context, isDarkMode, child) {
+              return IconButton(
+                onPressed: () {
+                  isDarkModeNotifier.value = !isDarkModeNotifier.value;
+                },
+                icon: isDarkMode
+                    ? Icon(Icons.dark_mode)
+                    : Icon(Icons.light_mode),
+              );
+            },
+          ),
+        ],
+      ),
       body: ValueListenableBuilder(
         valueListenable: selectedPageNotifier,
         builder: (context, selectedPage, child) {
