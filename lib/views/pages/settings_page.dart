@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class SettingsPage extends StatefulWidget {
-  const SettingsPage({super.key});
+  const SettingsPage({super.key, required this.title});
+  final String title;
 
   @override
   State<SettingsPage> createState() => _SettingsPageState();
@@ -17,7 +18,7 @@ class _SettingsPageState extends State<SettingsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Settings page"),
+        title: Text(widget.title),
         leading: BackButton(onPressed: () => Navigator.pop(context)),
       ),
       body: SingleChildScrollView(
@@ -25,6 +26,51 @@ class _SettingsPageState extends State<SettingsPage> {
           padding: const EdgeInsets.all(20.0),
           child: Column(
             children: [
+              ElevatedButton(
+                onPressed: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text("Hi bro"),
+                      duration: Duration(seconds: 5),
+                      behavior: SnackBarBehavior.floating,
+                      showCloseIcon: true,
+                    ),
+                  );
+                },
+                child: Text("Show SnackBar"),
+              ),
+              Divider(
+                color: Colors.teal,
+                thickness: 2,
+                endIndent: 100,
+                indent: 100,
+              ),
+              SizedBox(
+                height: 100.0,
+                child: VerticalDivider(color: Colors.pink, thickness: 5),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        content: Text('Alert Content'),
+                        title: Text('Alert title'),
+                        actions: [
+                          FilledButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: Text('Close'),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                },
+                child: Text("Show Dialog"),
+              ),
               DropdownButton(
                 value: dropDowItemValue,
                 items: [
@@ -114,7 +160,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 ),
                 child: Text("Click me"),
               ),
-              ElevatedButton(onPressed: () {}, child: Text("Click me")),
+
               OutlinedButton(onPressed: () {}, child: Text("Click me")),
               TextButton(onPressed: () {}, child: Text("Click me")),
               FilledButton(
