@@ -7,31 +7,30 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.all(20.0),
-      child: Column(
-        children: [
-          HeroWidget(),
-          Container(
-            padding: EdgeInsets.symmetric(vertical: 10),
-            width: double.infinity,
-            child: Card(
-              child: Padding(
-                padding: EdgeInsets.all(20.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'My dress up darling',
-                      style: KTextStyle.titleTealText,
-                    ),
-                    Text('How soft is it ?', style: KTextStyle.descriptionText),
-                  ],
+    return SingleChildScrollView(
+      child: Padding(
+        padding: EdgeInsets.all(20.0),
+        child: Column(
+          children: [
+            HeroWidget(title: 'Home Page'),
+            Container(
+              padding: EdgeInsets.symmetric(vertical: 10),
+              width: double.infinity,
+              child: Card(
+                child: Padding(
+                  padding: EdgeInsets.all(20.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('My title', style: KTextStyle.titleTealText),
+                      Text('My description', style: KTextStyle.descriptionText),
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
