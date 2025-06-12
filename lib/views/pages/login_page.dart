@@ -98,13 +98,14 @@ class _LoginPageState extends State<LoginPage> {
       ).showSnackBar(SnackBar(content: Text('Please fill all the fields')));
     } else if (emailController.text == confirmedEmail &&
         passwordController.text == confirmedPassword) {
-      Navigator.pushReplacement(
+      Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(
           builder: (context) {
             return WidgetTree();
           },
         ),
+        (route) => false,
       );
     } else {
       ScaffoldMessenger.of(

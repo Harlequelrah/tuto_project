@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tuto_project/data/constants.dart';
 import 'package:tuto_project/data/notifiers.dart';
 import 'package:tuto_project/views/pages/home_page.dart';
 import 'package:tuto_project/views/pages/profile_page.dart';
@@ -22,8 +24,14 @@ class WidgetTree extends StatelessWidget {
             valueListenable: isDarkModeNotifier,
             builder: (context, isDarkMode, child) {
               return IconButton(
-                onPressed: () {
+                onPressed: () async {
                   isDarkModeNotifier.value = !isDarkModeNotifier.value;
+                  final SharedPreferences prefs =
+                      await SharedPreferences.getInstance();
+                  await prefs.setBool(
+                    KConstants.themeModeKey,
+                    isDarkModeNotifier.value,
+                  );
                 },
                 icon: isDarkMode
                     ? Icon(Icons.dark_mode)
