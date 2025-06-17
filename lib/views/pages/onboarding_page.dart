@@ -18,13 +18,13 @@ class OnBoardingPage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Lottie.asset('assets/lotties/login.json', height: 400.0),
-                SizedBox(height: 20.0),
+                Lottie.asset('assets/lotties/hi.json', height: 400.0),
                 Text(
                   "Flutter Map is the way to learn flutter period",
                   style: KTextStyle.descriptionText,
                   textAlign: TextAlign.justify,
                 ),
+                SizedBox(height: 20.0),
                 ElevatedButton(
                   onPressed: () {
                     Navigator.pushReplacement(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tuto_project/data/constants.dart';
+import 'package:tuto_project/widgets/container_widget.dart';
 import 'package:tuto_project/widgets/hero_widget.dart';
 
 class HomePage extends StatelessWidget {
@@ -13,22 +13,7 @@ class HomePage extends StatelessWidget {
         child: Column(
           children: [
             HeroWidget(title: 'Home Page'),
-            Container(
-              padding: EdgeInsets.symmetric(vertical: 10),
-              width: double.infinity,
-              child: Card(
-                child: Padding(
-                  padding: EdgeInsets.all(20.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('My title', style: KTextStyle.titleTealText),
-                      Text('My description', style: KTextStyle.descriptionText),
-                    ],
-                  ),
-                ),
-              ),
-            ),
+            ContainerWidget(),
           ],
         ),
       ),

@@ -25,12 +25,18 @@ class WidgetTree extends StatelessWidget {
             builder: (context, isDarkMode, child) {
               return IconButton(
                 onPressed: () async {
+                  print(
+                    'theme mode before change is ${isDarkModeNotifier.value}',
+                  );
                   isDarkModeNotifier.value = !isDarkModeNotifier.value;
                   final SharedPreferences prefs =
                       await SharedPreferences.getInstance();
                   await prefs.setBool(
                     KConstants.themeModeKey,
                     isDarkModeNotifier.value,
+                  );
+                  print(
+                    'theme mode after change is ${isDarkModeNotifier.value}',
                   );
                 },
                 icon: isDarkMode

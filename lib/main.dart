@@ -4,9 +4,19 @@ import 'package:tuto_project/data/constants.dart';
 import 'package:tuto_project/data/notifiers.dart';
 import 'package:tuto_project/views/pages/welcome_page.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
+  final bool? themeMode = prefs.getBool(KConstants.themeModeKey);
+  print('theme mode is $themeMode');
+  print('previous notifier value  : ${isDarkModeNotifier.value}');
+  isDarkModeNotifier.value = themeMode ?? false;
+  print('final notifier value  : ${isDarkModeNotifier.value}');
+  // await initThemeModel();
   runApp(const MyApp());
 }
+
+initThemeModel() async {}
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -18,14 +28,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   void initState() {
-    initThemeModel();
     super.initState();
-  }
-
-  initThemeModel() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    final bool? themeMode = prefs.getBool(KConstants.themeModeKey);
-    isDarkModeNotifier.value = themeMode ?? false;
   }
 
   @override
@@ -38,7 +41,9 @@ class _MyAppState extends State<MyApp> {
           theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(
               seedColor: Colors.teal,
-              brightness: isDarkMode ? Brightness.dark : Brightness.light,
+              brightness: isDarkModeNotifier.value
+                  ? Brightness.dark
+                  : Brightness.light,
             ),
           ),
           home: WelcomePage(),
